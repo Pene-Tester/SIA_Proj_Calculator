@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="/">Logo</a>
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/basic_cal">Basic Calculator</a>
+        </nav>
+    </header>
+
+    <!-- Salary Calculator Section -->
+    <div class="salary-section">
+        <h2>Salary Calculator</h2>
+
+        <form id="salaryForm" class="row g-3">
+            <div class="col-md-6">
+                <label for="salaryAmount" class="form-label">Salary Amount</label>
+                <input type="number" class="form-control" id="salaryAmount" placeholder="Enter amount" required>
+            </div>
+
+            <div class="col-md-6">
+                <label for="salaryPeriod" class="form-label">Salary Period</label>
+                <select class="form-select" id="salaryPeriod" required>
+                    <option value="hour">Per Hour</option>
+                    <option value="month">Per Month</option>
+                    <option value="year">Per Year</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="hoursPerWeek" class="form-label">Hours per Week</label>
+                <input type="number" class="form-control" id="hoursPerWeek" placeholder="Default: 40">
+            </div>
+
+            <div class="col-md-6">
+                <label for="daysPerWeek" class="form-label">Days per Week</label>
+                <input type="number" class="form-control" id="daysPerWeek" placeholder="Default: 5">
+            </div>
+
+            <div class="col-md-6">
+                <label for="holidaysPerYear" class="form-label">Holidays per Year</label>
+                <input type="number" class="form-control" id="holidaysPerYear" placeholder="Optional">
+            </div>
+
+            <div class="col-md-6">
+                <label for="vacationDaysPerYear" class="form-label">Vacation Days per Year</label>
+                <input type="number" class="form-control" id="vacationDaysPerYear" placeholder="Optional">
+            </div>
+
+            <div class="col-12 text-center mt-4">
+                <button type="submit" class="btn btn-calculate">
+                    <span class="loading-spinner spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Calculate
+                </button>
+            </div>
+        </form>
+
+        <div id="salaryResult" class="salary-result" style="display: none;">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="alert">
+                        <h3 class="h5 mb-3">Annual & Monthly</h3>
+                        <p>Annual: <span id="annualSalary" class="fw-bold"></span></p>
+                        <p>Monthly: <span id="monthlySalary" class="fw-bold"></span></p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="alert">
+                        <h3 class="h5 mb-3">Weekly & Daily</h3>
+                        <p>Weekly: <span id="weeklySalary" class="fw-bold"></span></p>
+                        <p>Daily: <span id="dailySalary" class="fw-bold"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('salaryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const button = this.querySelector('button');
+            const spinner = button.querySelector('.loading-spinner');
+            button.disabled = true;
+            spinner.style.display = 'inline-block';
+            
+            const salaryAmount = parseFloat(document.getElementById('salaryAmount').value) || 0;
+            const salaryPeriod = document.getElementById('salaryPeriod').value;
+            const hoursPerWeek = parseFloat(document.getElementById('hoursPerWeek').value) || 40;
+            const daysPerWeek = parseFloat(document.getElementById('daysPerWeek').value) || 5;
+            const holidaysPerYear = parseFloat(document.getElementById('holidaysPerYear').value) || 0;
+            const vacationDaysPerYear = parseFloat(document.getElementById('vacationDaysPerYear').value) || 0;
+
+            setTimeout(() => {
+                const USD_TO_PHP = 55.00;
+                const workingDaysPerYear = (52 * daysPerWeek) - holidaysPerYear - vacationDaysPerYear;
+                const hourlyRate = salaryPeriod === 'hour' ? salaryAmount : 
+                                   salaryPeriod === 'month' ? salaryAmount / (4 * hoursPerWeek) : 
+                                   salaryAmount / (workingDaysPerYear * hoursPerWeek);
+                
+                const annualSalaryInUSD = hourlyRate * hoursPerWeek * workingDaysPerYear;
+                const monthlySalaryInUSD = annualSalaryInUSD / 12;
+                const weeklySalaryInUSD = hourlyRate * hoursPerWeek;
+                const dailySalaryInUSD = weeklySalaryInUSD / daysPerWeek;
+
+                // Format the salaries in PHP with commas and two decimal places
+                const annualSalaryInPHP = (annualSalaryInUSD * USD_TO_PHP).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                const monthlySalaryInPHP = (monthlySalaryInUSD * USD_TO_PHP).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                const weeklySalaryInPHP = (weeklySalaryInUSD * USD_TO_PHP).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                const dailySalaryInPHP = (dailySalaryInUSD * USD_TO_PHP).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+
+                document.getElementById('annualSalary').textContent = `₱${annualSalaryInPHP}`;
+                document.getElementById('monthlySalary').textContent = `₱${monthlySalaryInPHP}`;
+                document.getElementById('weeklySalary').textContent = `₱${weeklySalaryInPHP}`;
+                document.getElementById('dailySalary').textContent = `₱${dailySalaryInPHP}`;
+
+                // Show result section
+                document.getElementById('salaryResult').style.display = 'block';
+
+                // Hide loading state
+                button.disabled = false;
+                spinner.style.display = 'none';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

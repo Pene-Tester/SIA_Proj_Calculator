@@ -1,0 +1,306 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text for better contrast */
+}
+
+header {
+    background-color: rgba(29, 33, 50, 0.8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+
+}
+
+header .logo{
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+header .logo a{
+    text-decoration: none;
+    color: #ffffff;
+}
+header .logo a:hover{
+text-decoration: none;
+color: aqua;
+transition: 0.6s;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffffff; /* Light text */
+    font-weight: 600;
+    padding: 10px;
+}
+
+nav a:hover {
+    color: #66ccff; /* Light blue hover effect */
+}
+
+/* Main Section - Landing Page */
+.main-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px 50px;
+    background: url('/images/background.jpg') no-repeat center center/cover; /* Background image */
+    background-size: cover;
+    background-attachment: fixed;
+    height: 60vh;
+    color: white;
+}
+
+.main-section .text {
+    max-width: 50%;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional overlay */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.main-section h1 {
+    font-size: 48px;
+}
+
+.main-section p {
+    font-size: 18px;
+}
+
+.cta-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #6c63ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.cta-btn:hover {
+    background-color: #524bd4;
+}
+
+/* About Us Page */
+.about-section {
+    padding: 50px;
+    text-align: center;
+    background: url('/images/background.jpg') no-repeat center center/cover; /* Background image */
+    background-size: cover;
+    background-attachment: fixed;
+    height: 75vh;
+}
+
+.about-section h1 {
+    font-size: 36px;
+    color: #ffffff;
+}
+
+.about-section p {
+    font-size: 18px;
+    color: #cccccc;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for text readability */
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+/* About Us Section Styling */
+.team {
+    display: flex;
+    justify-content: center;
+    gap: 50px; /* Space between team members */
+}
+
+.team-member {
+    text-align: center;
+    max-width: 300px;
+}
+
+.image-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #ffffff; /* White border around the circle */
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the circle area */
+}
+
+.team-member h3 {
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+.team-member p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #cccccc; /* Slightly lighter text for readability */
+}
+
+/* Basic Calculator Section */
+.calculator-section {
+    padding: 50px;
+    text-align: center;
+    background: url('/images/background.jpg') no-repeat center center/cover;
+    background-position: center;
+    background-size: cover;
+    background-attachment: scroll;
+    height: 120vh;
+}
+
+.calculator-section h2 {
+    font-size: 36px;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.calculator-section form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+.calculator-section input,
+.calculator-section select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    color: white;
+    background-color: #000000;
+    border: 1px solid #444;
+    border-radius: 5px;
+}
+
+.calculator-section input::placeholder {
+    color: #f7f6f6;
+}
+
+.calculator-section input:focus,
+.calculator-section select:focus {
+    border-color: #66ccff;
+    box-shadow: none;
+    background-color: #fff7f7;
+    color: #000000;
+}
+
+.calculator-section button {
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.calculator-section button:hover {
+    background-color: #0056b3;
+}
+
+/* Salary Calculator Section */
+        .salary-section {
+            padding: 50px;
+            text-align: center;
+            background: url('/images/background.jpg') no-repeat center center/cover;
+            background-position: center;
+            background-size: cover;
+            background-attachment: scroll;
+            height: 120vh;
+        }
+
+        .salary-section h2 {
+            font-size: 36px;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .salary-section form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+
+        .salary-section input,
+        .salary-section select {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            color: white;
+            background-color: #000000;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+
+        .salary-section input::placeholder {
+            color: #f7f6f6;
+        }
+
+        .salary-section input:focus,
+        .salary-section select:focus {
+            border-color: #66ccff;
+            box-shadow: none;
+            background-color: #fff7f7;
+            color: #000000;
+        }
+
+        .salary-section button {
+            padding: 12px 25px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .salary-section button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Salary & Basic Calculator Result */
+        .salary-result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .salary-result .alert {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #66ccff;
+            border: 1px solid #66ccff;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .salary-section h2 {
+                font-size: 30px;
+            }
+
+            .salary-section form {
+                padding: 15px;
+            }
+
+            .salary-section button {
+                width: 100%;
+            }
+        }
+
